@@ -21,7 +21,7 @@ public class NegativeTests extends Runner {
     @Link("https://www.saucedemo.com/")
     public void setOnlyUserName() {
         LoginPage loginPage = new LoginPage(driver, wait);
-        loginPage.login("abc", "");
+        loginPage.login(LoginData.userName, "");
         //verify that after set only userName, both userName and password input must be red and
         // red error h3 element must be displayed with proper text
         Assert.assertEquals(loginPage.getUserNameInputColor(), "rgba(226, 35, 26, 1)");
@@ -36,7 +36,7 @@ public class NegativeTests extends Runner {
     @Link("https://www.saucedemo.com/")
     public void setOnlyPassword() {
         LoginPage loginPage = new LoginPage(driver, wait);
-        loginPage.login("", "123");
+        loginPage.login("", LoginData.password);
         //verify that after set only userName, both userName and password input must be red and
         // red error h3 element must be displayed with proper text
         Assert.assertEquals(loginPage.getUserNameInputColor(), "rgba(226, 35, 26, 1)");
@@ -51,7 +51,7 @@ public class NegativeTests extends Runner {
     @Link("https://www.saucedemo.com/")
     public void setIncorrectPasswordOrUserName() {
         LoginPage loginPage = new LoginPage(driver, wait);
-        loginPage.login("standard_user", "123");
+        loginPage.login(LoginData.userName, LoginData.invalidPassword);
         loginPage.clickLoginButton();
         //verify that after set only userName both userName and password input must be red and
         // red error h3 element must be displayed

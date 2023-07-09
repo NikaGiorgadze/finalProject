@@ -1,5 +1,6 @@
 package utils;
 
+import dataobject.RunnerData;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -43,11 +44,11 @@ public class Runner {
 
     @BeforeMethod
     public void setUp() {
-        driver = new Runner().getDriverInstance("chrome");
+        driver = getDriverInstance(RunnerData.browserName);
 
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("https://www.saucedemo.com/");
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(RunnerData.implicitWaitDuration));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(RunnerData.explicitWaitDuration));
+        driver.get(RunnerData.url);
         driver.manage().window().maximize();
     }
 
